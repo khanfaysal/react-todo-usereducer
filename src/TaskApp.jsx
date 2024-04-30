@@ -1,29 +1,31 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import AddTask from "./components/AddTask";
 import TaskList from "./components/TaskList";
 
 let nextId = null;
 export default function TaskApp() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, dispatch] = useReducer(taskReducer, []);
 
   function handleAddTask(text) {
-    setTasks([...tasks, { id: nextId++, text: text, done: false }]);
+    dispatch({
+      type: "addTask",
+      id: nextId,
+      text: text,
+    });
   }
 
   function handleDeleteTask(taskId) {
-    setTasks(tasks.filter((t) => t.id !== taskId));
+    dispatch({
+      type: "deleteTask",
+      id: taskId,
+    });
   }
 
   function handleChangeTask(task) {
-    setTasks(
-      tasks.map((t) => {
-        if (t.id === task.id) {
-          return task;
-        } else {
-          return t;
-        }
-      })
-    );
+    dispatch({
+      type: "changeTask",
+      task: task,
+    });
   }
   return (
     <div className="flex justify-center mt-5">
@@ -37,4 +39,22 @@ export default function TaskApp() {
       </div>
     </div>
   );
+}
+
+function taskReducer(tasks, action) {
+  if (action.type === "addTask") {
+    return [...tasks, { id: nextId++, text: action.text, done: false }];
+  } else if (action.type === "deleteTask") {
+    return tasks.filter((t) => t.id !== action.id);
+  } else if (action.type === "changeTask") {
+    return tasks.map((t) => {
+      if (t.id === action.task.id) {
+        return action.task;
+      } else {
+        return t;
+      }
+    });
+  } else {
+    throw Error("Unknown action" + action.type);
+  }
 }
