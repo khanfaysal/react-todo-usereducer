@@ -1,8 +1,7 @@
-# React + Vite
+Here if you follow my another repository then you see I implement already task mini project by useState hook and props also lifting state up.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Here this repository only convert useState to useReducer hook and if you follow two repositories and read my code deeply then you can understand about react fundamental concept like react useState, props, useReducer and lifting state up concept clearly.
 
-Currently, two official plugins are available:
+Thanks for reading and implementing those mini projects.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Happy coding :blush:
